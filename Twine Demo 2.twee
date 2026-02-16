@@ -7,10 +7,12 @@ Twine Demo 2
   "ifid": "F7A58FA1-A989-45F8-8A67-32910EB9EAFE",
   "format": "SugarCube",
   "format-version": "2.37.3",
-  "start": "rename me",
+  "start": "begin",
   "zoom": 1
 }
 
 
-:: rename me {"position":"600,250","size":"100,100"}
+:: begin {"position":"600,250","size":"100,100"}
+[img[https://i.postimg.cc/x1wcHRB8/1WZ0WZV.jpg]]
 
+e
