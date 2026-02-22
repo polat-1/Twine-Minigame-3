@@ -1,0 +1,179 @@
+:: StoryTitle
+Twine Minigame 3
+
+
+:: StoryData
+{
+  "ifid": "0DDDBF4C-F7F2-4252-A08C-2CC9404AA52F",
+  "format": "SugarCube",
+  "format-version": "2.37.3",
+  "start": "title",
+  "zoom": 1
+}
+
+
+:: check left door {"position":"400,550","size":"100,100"}
+[img[https://i.postimg.cc/s2VLkK2D/left-door.jpg]]
+a door stands before you.
+you are not sure why, but something compels you to see what lies behind it.
+
+<<if $haskey == false>>
+the door is locked, it will need a key to be opened.
+<<else>>
+[[use the key]]
+<</if>>
+
+[[check inventory ->inventory]]
+[[leave ->start]]
+
+
+:: check right door {"position":"1025,525","size":"100,100"}
+The door opens with an echoing creak.
+
+it leads into a long hallway of doors. an impossibly long hallway of doors. the whole thing seems to defy logic, stretching on towards infinity.
+
+out of all of them, only four doors seem to catch your interest. which one will you go into?
+
+[[door 1]]
+[[door 2]]
+[[door 3]]
+[[door 4]]
+
+[[check inventory ->inventory]]
+[[leave ->start]]
+
+
+:: door 1 {"position":"850,675","size":"100,100"}
+[img[https://i.postimg.cc/nVKgVCXs/treasure.jpg]]
+You enter a small room. Within it is an old chest.
+
+[[open the chest]]
+[[leave ->check right door]]
+
+
+:: door 2 {"position":"1000,700","size":"100,100"}
+<<set $deaths to $deaths + 1>>
+
+you enter the room, and in an instant, you collapse to the ground. 
+
+you cannot move a muscle. something is clearly wrong.
+
+before your upper body gives out, you manage to force your head to look towards a nearby sign.
+
+"WARNING: POLIO ROOM. DO NOT ENTER IF YOU DO NOT WANT POLIO,"
+
+!GAME OVER
+[[retry ->check right door]]
+
+
+
+
+:: door 3 {"position":"1125,700","size":"100,100"}
+you walk right into the room, and are instantly greeted with a polar bear. it glares at you like it hasnt eaten in weeks.
+
+[img[https://static.wikia.nocookie.net/ultimatepopculture/images/6/66/Polar_Bear_-_Alaska_%28cropped%29.jpg/revision/latest?cb=20191116232451]]
+
+[[see what happens]]
+[[leave ->check right door]]
+
+
+:: door 4 {"position":"1250,725","size":"100,100"}
+<<set $haskey to true>>
+you find the key!! now its time to get out of this hallway and use it.
+
+[[leave ->check right door]]
+
+
+:: enter 2 {"position":"550,875","size":"100,100"}
+[img[https://i.postimg.cc/W3QccrK5/enter2.gif]]
+what is that
+
+!GOOD ENDING...?
+total deaths: $deaths
+<<if $lefthand == true>>
+total hands: 2
+<<else>>
+total hands: 1
+<</if>>
+[[return to title ->title]]
+
+
+:: enter1 {"position":"525,675","size":"100,100"}
+<<if $lefthand == true>>
+[img[https://i.postimg.cc/zf0Q8WLr/enter1.jpg]]
+<<else>>
+[img[https://i.postimg.cc/mgrgNvvd/enter1alt.jpg]]
+<</if>>
+[[next->enter 2]]
+
+
+:: inventory {"position":"1050,200","size":"100,100"}
+you reach into your pockets...
+
+<<if $haskey == false>>
+you have nothing currently.
+<</if>>
+
+<<if $haskey == true>>
+You have //1 key//.
+<</if>>
+
+<<return "close inventory">>
+
+
+:: open the chest {"position":"875,800","size":"100,100"}
+[img[https://i.postimg.cc/66Vg6y82/treasure2.jpg]]
+
+theres a little guy in there
+
+[[say hello]]
+[[close the chest ->door 1]]
+
+
+:: say hello {"position":"875,925","size":"100,100"}
+[img[https://i.postimg.cc/G3PV3H49/treasure3.gif]]
+
+
+
+
+
+wow. you lost your left hand. i guess you have to play the rest of this game without a left hand.
+
+<<set $lefthand to false>>
+
+[[accept defeat and leave ->check right door]]
+
+
+:: see what happens {"position":"1125,825","size":"100,100"}
+<<set $deaths to $deaths + 1>>
+the polar bear mauls you and eats you. idk what else you expected to happen.
+
+!GAME OVER
+[[retry ->check right door]]
+
+
+:: start {"position":"700,275","size":"100,100"}
+[img[https://i.postimg.cc/3xj6fzYb/start.jpg]]
+you wake up in a room.
+
+inside of it are two doors. what do you do?
+
+[[check left door]]
+[[check right door]]
+
+[[check inventory ->inventory]]
+
+
+:: title {"position":"700,125","size":"100,100"}
+<<set $haskey to false>>
+<<set $lefthand to true>> <!--this is for door 1-->
+<<set $deaths to 0>>
+
+[img[https://i.postimg.cc/d0qfbnVB/thumb.jpg]]
+[[play ->start]]
+
+
+:: use the key {"position":"400,675","size":"100,100"}
+[img[https://i.postimg.cc/s2VLkK2D/left-door.jpg]]
+The door opens. It is time to witness the truth for yourself.
+[[enter.->enter1]]

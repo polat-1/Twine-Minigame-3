@@ -12,7 +12,82 @@ Twine Demo 2
 }
 
 
-:: begin {"position":"600,250","size":"100,100"}
+:: begin {"position":"625,125","size":"100,100"}
+<<set $breadcount to 0>>
+
 [img[https://i.postimg.cc/x1wcHRB8/1WZ0WZV.jpg]]
 
-e
+You currently have $breadcount bread.
+
+what is your name?
+
+<<textbox "$name" "senshi">>
+
+[[make some bread ->gain]]
+
+
+:: choices {"position":"450,425","size":"100,100"}
+[img[https://i.postimg.cc/x1wcHRB8/1WZ0WZV.jpg]]
+
+$name currently has $breadcount bread.
+
+do you want to [[make more bread ->gain]] or to [[eat the bread]]?
+
+
+:: eat the bread {"position":"725,350","size":"100,100"}
+<<set $breadcount to $breadcount -1>>
+
+<<if $breadcount >= 1>>
+[img[https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSThxWEN69JGDq-sNHvgBdOFGm6No9RSkSiqj3GvQqtxA&s]]
+
+you ate his bread.
+
+$name only has $breadcount bread now.
+
+[[what happens next? ->choices]]
+<</if>>
+
+<<if $breadcount == 0>>
+[img[https://i.pinimg.com/1200x/82/66/11/82661199092dab5696901e3d66da33fd.jpg]]
+
+you ate it all... how could you.......
+
+$name has $breadcount bread now...
+
+[[what happens next? ->choices]]
+<</if>>
+
+<<if $breadcount < 0>>
+[img[https://i.pinimg.com/1200x/82/66/11/82661199092dab5696901e3d66da33fd.jpg]]
+
+you ate it all... how could you.......
+
+$name has $breadcount bread now...
+$name is in bread debt now..........
+
+[[what happens next? ->choices]]
+<</if>>
+
+
+:: gain {"position":"500,250","size":"100,100"}
+<<if $breadcount >= 5>>
+[img[https://i.pinimg.com/236x/1b/66/9a/1b669adbb4f5632846e1b81487bcbdc4.jpg]]
+
+$name has made some bread!!! <<set $breadcount to $breadcount + 1>>
+
+$name now has $breadcount bread.
+
+wow, so much bread! $name is very proud of your hard work!!
+
+[[what happens next? ->choices]]
+<<else>>
+[img[https://i.pinimg.com/474x/e8/ef/a3/e8efa3551b327f033f06d4e141449cdd.jpg]]
+
+$name has made some bread!!! <<set $breadcount to $breadcount + 1>>
+
+$name now has $breadcount bread.
+
+keep it up, make more bread!
+
+[[what happens next? ->choices]]
+<</if>>
